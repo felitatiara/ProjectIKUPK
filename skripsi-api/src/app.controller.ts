@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common';
 
 @Controller()
 export class AppController {
-  @Get('hello')
+  @Get('dashboard')
   getHello() {
     return {
       message: 'Hello from NestJS 👋'
