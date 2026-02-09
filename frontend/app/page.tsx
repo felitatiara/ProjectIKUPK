@@ -1,43 +1,33 @@
-'use client'
+import TargetNotification from "@/components/targetnotification";
+import TargetTable from "@/components/targettable";
 
-import { useEffect, useState } from 'react'
-
-export default function Home() {
-  const [message, setMessage] = useState('')
-
-  useEffect(() => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL
-
-    console.log('API URL:', apiUrl)
-
-    if (!apiUrl) {
-      console.error('API URL is undefined')
-      return
-    }
-
-    fetch(`${apiUrl}/hello`)
-      .then(res => res.json())
-      .then(data => setMessage(data.message))
-      .catch(err => console.error('FETCH ERROR:', err))
-  }, [])
+export default function HomePage() {
+  const targets = [
+    {
+      tenggat: "02 Januari 2025",
+      jenis: "Perjanjian Kerja",
+      sasaran: "Pemberitaan kegiatan melalui web Fakultas",
+      capaian: 100,
+      aksi: "Input",
+    },
+    {
+      tenggat: "31 Maret 2025",
+      jenis: "Indikator Kinerja Utama",
+      sasaran: "Meningkatnya kualitas lulusan pendidikan tinggi",
+      capaian: 0,
+      aksi: "Proses",
+    },
+  ];
 
   return (
-    <main style={{ padding: 20 }}>
-      <h1>Next.js ↔ NestJS</h1>
-      <p>{message}</p>
-      <table
-        style={{
-          borderCollapse: 'collapse',
-          marginTop: 20,
-        }}
-      >
-        <thead>
-          <tr>
-            <th style={{ border: '1px solid black', padding: '8px' }}>Feature</th>
-            <th style={{ border: '1px solid black', padding: '8px' }}>Status</th>
-          </tr>
-        </thead>
-      </table>    
-    </main>
-  )
+    <>
+      <TargetNotification show={true} />
+
+      <h2 className="text-lg font-semibold mb-4 th">
+        Target IKU dan PK
+      </h2>
+
+      <TargetTable data={targets} />
+    </>
+  );
 }
